@@ -214,19 +214,48 @@ main,
 }
 
 .hero-proof {
-  display: inline-flex;
-  align-items: center;
-  min-height: 38px;
-  margin-bottom: 16px;
-  padding: 0 16px;
-  border-radius: 999px;
-  background: rgba(240, 195, 127, 0.16);
+  display: inline-grid;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 18px 22px 20px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(240, 195, 127, 0.18), transparent 40%),
+    rgba(240, 195, 127, 0.08);
   border: 1px solid rgba(240, 195, 127, 0.26);
-  color: #f4d4a0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.hero-proof-overline,
+.hero-proof-sub {
   font-family: "Space Grotesk", "Inter", sans-serif;
-  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-proof-overline {
+  font-size: 0.78rem;
+  color: rgba(244, 212, 160, 0.8);
+}
+
+.hero-proof strong {
+  display: block;
+  font-family: "Noto Serif SC", "Cormorant Garamond", serif;
+  font-size: clamp(1.55rem, 3vw, 2.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #f7e8cb;
+}
+
+.hero-proof strong span {
+  color: #ffd089;
+  font-size: 1.24em;
+}
+
+.hero-proof-sub {
+  font-size: 0.92rem;
+  color: rgba(244, 212, 160, 0.92);
 }
 
 .eyebrow {
@@ -317,32 +346,113 @@ main,
 
 .hero-stat-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-  gap: 14px;
-  margin-top: 36px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 38px;
 }
 
 .hero-stat {
-  padding: 18px 16px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  display: flex;
+  min-height: 172px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px 18px 18px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top right, rgba(240, 195, 127, 0.14), transparent 46%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+.hero-stat::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  bottom: -14px;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240, 195, 127, 0.14), transparent 68%);
+  pointer-events: none;
+}
+
+.hero-stat-featured {
+  grid-column: span 2;
+  min-height: 216px;
+  padding: 24px 22px 22px;
+  background:
+    radial-gradient(circle at top right, rgba(240, 195, 127, 0.24), transparent 44%),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
+  border-color: rgba(240, 195, 127, 0.24);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 48px rgba(0, 0, 0, 0.18);
+}
+
+.hero-stat-accent {
+  background:
+    radial-gradient(circle at top right, rgba(113, 121, 245, 0.24), transparent 44%),
+    linear-gradient(155deg, rgba(126, 132, 255, 0.18), rgba(255, 255, 255, 0.05));
+  border-color: rgba(150, 156, 255, 0.24);
+}
+
+.hero-stat-kicker {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-bottom: auto;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(245, 240, 233, 0.72);
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .hero-stat-num {
   display: block;
   font-family: "Space Grotesk", "Inter", sans-serif;
-  font-size: 1.8rem;
+  font-size: clamp(2rem, 2.2vw, 2.8rem);
   font-weight: 700;
+  line-height: 0.96;
   color: #f0c37f;
 }
 
 .hero-stat-label {
   display: block;
-  margin-top: 6px;
-  font-size: 0.9rem;
-  color: rgba(245, 240, 233, 0.74);
+  margin-top: 12px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: rgba(245, 240, 233, 0.88);
+}
+
+.hero-stat-note {
+  display: block;
+  margin-top: 10px;
+  max-width: 28ch;
+  font-size: 0.92rem;
+  line-height: 1.58;
+  color: rgba(245, 240, 233, 0.72);
+}
+
+.hero-stat-featured .hero-stat-num {
+  font-size: clamp(2.8rem, 4vw, 4.3rem);
+}
+
+.hero-stat-featured .hero-stat-label {
+  font-size: 1.1rem;
+}
+
+.hero-stat-accent .hero-stat-num {
+  color: #d9d2ff;
+}
+
+.hero-stat-accent::after {
+  background: radial-gradient(circle, rgba(113, 121, 245, 0.24), transparent 68%);
 }
 
 .hero-stage {
@@ -1212,6 +1322,126 @@ main,
   font-size: 1rem;
 }
 
+.section-writing-proof {
+  background:
+    radial-gradient(circle at top left, rgba(240, 195, 127, 0.1), transparent 26%),
+    radial-gradient(circle at top right, rgba(82, 103, 255, 0.12), transparent 30%),
+    linear-gradient(180deg, #171717, #111112);
+}
+
+.writing-proof-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 22px;
+  margin-top: 38px;
+  align-items: start;
+}
+
+.writing-proof-board,
+.writing-sample-card {
+  overflow: hidden;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-lg);
+}
+
+.writing-proof-board img {
+  width: 100%;
+  aspect-ratio: 0.86 / 1;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.writing-proof-note {
+  display: grid;
+  gap: 12px;
+  padding: 22px 24px 24px;
+}
+
+.writing-proof-note strong,
+.writing-sample-copy strong {
+  display: block;
+  font-family: "Noto Serif SC", "Cormorant Garamond", serif;
+}
+
+.writing-proof-note strong {
+  font-size: 1.3rem;
+}
+
+.writing-proof-note p {
+  margin: 0;
+  color: rgba(245, 239, 230, 0.72);
+}
+
+.writing-proof-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.writing-proof-badges span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(240, 195, 127, 0.14);
+  border: 1px solid rgba(240, 195, 127, 0.18);
+  color: #f3d19a;
+  font-size: 0.84rem;
+}
+
+.writing-proof-sidebar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.writing-sample-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 12px;
+}
+
+.writing-sample-card img {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  border-radius: 20px;
+  object-fit: contain;
+  object-position: top center;
+}
+
+.writing-sample-copy {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 8px 8px 0;
+}
+
+.writing-sample-meta {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(243, 209, 154, 0.72);
+}
+
+.writing-sample-copy strong {
+  font-size: 1.22rem;
+  line-height: 1.28;
+  color: #f5efe6;
+}
+
+.writing-sample-copy p {
+  margin: 0;
+  color: rgba(245, 239, 230, 0.72);
+  line-height: 1.7;
+}
+
 .outcomes-layout {
   margin-top: 38px;
   align-items: start;
@@ -1412,6 +1642,7 @@ main,
   .hero-grid,
   .split-layout,
   .ambassador-layout,
+  .writing-proof-layout,
   .outcomes-layout,
   .apply-layout {
     grid-template-columns: 1fr;
@@ -1436,6 +1667,10 @@ main,
   .level-grid,
   .environment-grid {
     grid-template-columns: 1fr;
+  }
+
+  .writing-proof-sidebar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1467,6 +1702,10 @@ main,
 
   .hero-stat-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-stat-featured {
+    grid-column: span 2;
   }
 
   .hero-stage {
@@ -1528,6 +1767,7 @@ main,
   .section-books,
   .section-faculty,
   .section-ambassador,
+  .section-writing-proof,
   .section-outcomes,
   .section-apply {
     padding: 90px 18px;
@@ -1581,6 +1821,19 @@ main,
     font-size: clamp(2rem, 10vw, 2.8rem);
   }
 
+  .hero-proof {
+    padding: 16px 18px 18px;
+  }
+
+  .hero-proof strong {
+    font-size: clamp(1.32rem, 7vw, 1.9rem);
+  }
+
+  .hero-proof-sub {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
@@ -1592,6 +1845,33 @@ main,
 
   .hero-stage {
     min-height: 450px;
+  }
+
+  .writing-proof-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stat-row {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stat,
+  .hero-stat-featured {
+    grid-column: auto;
+    min-height: auto;
+  }
+
+  .writing-sample-card {
+    grid-template-columns: 1fr;
+  }
+
+  .writing-sample-card img {
+    min-height: 0;
+    aspect-ratio: 1.08 / 1;
+  }
+
+  .writing-sample-copy {
+    padding: 0 4px 8px;
   }
 
   .hero-cover {
