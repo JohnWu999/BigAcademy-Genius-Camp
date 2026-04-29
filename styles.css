@@ -1331,13 +1331,13 @@ main,
 
 .writing-proof-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 22px;
+  gap: 24px;
   margin-top: 38px;
   align-items: start;
 }
 
 .writing-proof-board,
+.writing-sample-gallery,
 .writing-sample-card {
   overflow: hidden;
   border-radius: 30px;
@@ -1346,16 +1346,21 @@ main,
   box-shadow: var(--shadow-lg);
 }
 
+.writing-proof-board {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 .writing-proof-board img {
   width: 100%;
-  aspect-ratio: 0.86 / 1;
+  height: 320px;
   object-fit: cover;
-  object-position: top center;
+  object-position: center 14%;
 }
 
 .writing-proof-note {
   display: grid;
-  gap: 12px;
+  gap: 14px;
   padding: 22px 24px 24px;
 }
 
@@ -1378,11 +1383,13 @@ main,
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  align-items: flex-start;
 }
 
 .writing-proof-badges span {
   display: inline-flex;
   align-items: center;
+  flex: 0 0 auto;
   min-height: 34px;
   padding: 0 14px;
   border-radius: 999px;
@@ -1392,26 +1399,136 @@ main,
   font-size: 0.84rem;
 }
 
-.writing-proof-sidebar {
+.writing-sample-gallery {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 18px;
+  padding: 22px;
+}
+
+.writing-sample-toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.writing-sample-toolbar-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.writing-sample-toolbar-copy strong {
+  display: block;
+  font-family: "Noto Serif SC", "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+}
+
+.writing-sample-toolbar-copy span {
+  color: rgba(245, 239, 230, 0.68);
+}
+
+.writing-sample-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.writing-scroll-btn,
+.writing-lightbox-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid rgba(240, 195, 127, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #f5efe6;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.writing-scroll-btn:hover,
+.writing-lightbox-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(240, 195, 127, 0.14);
+  border-color: rgba(240, 195, 127, 0.3);
+}
+
+.writing-sample-scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(360px, 40vw);
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(240, 195, 127, 0.4) transparent;
 }
 
 .writing-sample-card {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px;
-  padding: 12px;
+  gap: 16px;
+  min-height: 100%;
+  padding: 18px;
+  scroll-snap-align: start;
+  background:
+    radial-gradient(circle at top right, rgba(240, 195, 127, 0.12), transparent 38%),
+    rgba(255, 255, 255, 0.04);
+}
+
+.writing-sample-preview {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 24px;
+  background: #151515;
+  cursor: zoom-in;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.writing-sample-preview::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 34%;
+  background: linear-gradient(180deg, transparent, rgba(7, 7, 9, 0.84));
+  pointer-events: none;
 }
 
 .writing-sample-card img {
   width: 100%;
-  height: auto;
-  min-height: 0;
-  border-radius: 20px;
+  height: 460px;
   object-fit: contain;
   object-position: top center;
+  display: block;
+}
+
+.writing-sample-cta {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 16px;
+  z-index: 1;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 42px;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: rgba(17, 17, 19, 0.82);
+  color: #fff;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .writing-sample-copy {
@@ -1440,6 +1557,98 @@ main,
   margin: 0;
   color: rgba(245, 239, 230, 0.72);
   line-height: 1.7;
+}
+
+.writing-lightbox[hidden] {
+  display: none;
+}
+
+.writing-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.writing-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(9, 9, 12, 0.74);
+  backdrop-filter: blur(18px);
+}
+
+.writing-lightbox-dialog {
+  position: relative;
+  width: min(1160px, 100%);
+  max-height: calc(100vh - 48px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  border-radius: 30px;
+  overflow: hidden;
+  background: #111214;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.38);
+}
+
+.writing-lightbox-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 22px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.writing-lightbox-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.writing-lightbox-meta {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(243, 209, 154, 0.72);
+}
+
+.writing-lightbox-copy strong {
+  display: block;
+  font-family: "Noto Serif SC", "Cormorant Garamond", serif;
+  font-size: clamp(1.4rem, 2.1vw, 2rem);
+  line-height: 1.16;
+}
+
+.writing-lightbox-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.writing-lightbox-close {
+  min-width: 72px;
+}
+
+.writing-lightbox-stage {
+  overflow: auto;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top left, rgba(240, 195, 127, 0.08), transparent 26%),
+    #0f0f11;
+}
+
+.writing-lightbox-image {
+  display: block;
+  margin: 0 auto;
+  width: min(880px, 100%);
+  height: auto;
+  border-radius: 22px;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.34);
 }
 
 .outcomes-layout {
@@ -1668,10 +1877,6 @@ main,
   .environment-grid {
     grid-template-columns: 1fr;
   }
-
-  .writing-proof-sidebar {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 920px) {
@@ -1843,12 +2048,46 @@ main,
     width: 100%;
   }
 
-  .hero-stage {
-    min-height: 450px;
+  .writing-proof-board {
+    grid-template-columns: 1fr;
   }
 
-  .writing-proof-sidebar {
-    grid-template-columns: 1fr;
+  .writing-proof-board img {
+    height: 220px;
+  }
+
+  .writing-sample-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .writing-sample-controls {
+    justify-content: flex-start;
+  }
+
+  .writing-sample-scroller {
+    grid-auto-columns: minmax(290px, 84vw);
+  }
+
+  .writing-sample-card img {
+    height: 380px;
+  }
+
+  .writing-lightbox {
+    padding: 12px;
+  }
+
+  .writing-lightbox-dialog {
+    max-height: calc(100vh - 24px);
+  }
+
+  .writing-lightbox-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-stage {
+    min-height: 450px;
   }
 
   .hero-stat-row {
