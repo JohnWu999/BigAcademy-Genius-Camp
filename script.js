@@ -286,6 +286,7 @@ const translations = {
       statNotes: [
         "真正拉开阅读理解与文本分析差距的底层训练量。",
         "BigAcademy 平台内容库持续托举孩子的阅读广度与训练密度。",
+        "覆盖阅读和写作的高阶核心技能。",
         "学习平台持续承接讨论、回应与观点碰撞。",
       ],
       panelLabel: "BigAcademy 阅读体验",
@@ -567,6 +568,7 @@ const translations = {
       statNotes: [
         "The kind of volume that truly separates surface comprehension from real text analysis.",
         "The BigAcademy platform continuously supports breadth, density, and consistency of practice.",
+        "Covers the high-level core skills of reading and writing.",
         "The learning platform keeps discussion, response, and viewpoint collision alive beyond class.",
       ],
       panelLabel: "BigAcademy Reading Experience",
