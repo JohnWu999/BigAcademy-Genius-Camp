@@ -314,7 +314,7 @@ const translations = {
       lead: "第三期最核心的价值，在于有专业的人带着孩子走进真正的好书，在高标准的任务、讨论、写作与表达中，逐步长出更成熟的阅读能力、表达能力和判断力。",
       titles: [
         "顶尖老师全程带读，孩子一路走深",
-        "六本好书，构成完整的选书逻辑与诠释路径",
+        "经典杰作 + 全球优秀同学群体，激发孩子无限学习动力",
         "任务系统激活老师、同伴与文本",
       ],
       texts: [
@@ -596,7 +596,7 @@ const translations = {
       lead: "The core value of Term 3 lies in expert adults leading children into genuinely great books. Through high-standard tasks, discussion, writing, and public expression, children grow more mature reading, writing, and judgment.",
       titles: [
         "Top teachers lead the reading, and children keep going deeper",
-        "Six great books form a coherent reading logic and interpretation path",
+        "Classic masterpieces + a global cohort of outstanding peers spark unlimited learning motivation",
         "The task system activates teacher, peers, and text at once",
       ],
       texts: [
