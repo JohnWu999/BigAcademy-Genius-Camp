@@ -16,10 +16,16 @@
   <div class="page-noise"></div>
 
   <header class="site-header">
-    <a href="#top" class="brand" aria-label="BigAcademy 首页">
-      <img src="./assets/brand/bigacademy-logo.png" alt="BigAcademy Logo">
-      <span>BigAcademy</span>
-    </a>
+    <div class="header-left">
+      <a href="#top" class="brand" aria-label="BigAcademy 首页">
+        <img src="./assets/brand/bigacademy-logo.png" alt="BigAcademy Logo">
+        <span>BigAcademy</span>
+      </a>
+      <div class="lang-switcher" aria-label="语言切换">
+        <button type="button" class="lang-btn" data-lang-choice="zh">中</button>
+        <button type="button" class="lang-btn" data-lang-choice="en">EN</button>
+      </div>
+    </div>
     <nav class="main-nav" aria-label="站点导航">
       <a href="#value">课程价值</a>
       <a href="#structure">课程结构</a>
@@ -28,8 +34,36 @@
       <a href="#outcomes">成果交付</a>
       <a href="#apply">咨询报名</a>
     </nav>
+    <button
+      type="button"
+      class="mobile-nav-toggle"
+      aria-label="打开导航菜单"
+      aria-expanded="false"
+      aria-controls="mobile-nav-panel"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <a class="header-cta" href="#apply">预约测评</a>
   </header>
+
+  <div class="mobile-nav-panel" id="mobile-nav-panel" aria-hidden="true">
+    <div class="mobile-nav-card">
+      <div class="mobile-nav-head">
+        <span class="mobile-nav-eyebrow">Quick Navigation</span>
+        <a class="mobile-nav-cta" href="#apply">预约测评</a>
+      </div>
+      <nav class="mobile-nav-links" aria-label="移动端导航">
+        <a href="#value">课程价值</a>
+        <a href="#structure">课程结构</a>
+        <a href="#evolution">选书逻辑</a>
+        <a href="#books">第三期书单</a>
+        <a href="#outcomes">成果交付</a>
+        <a href="#apply">咨询报名</a>
+      </nav>
+    </div>
+  </div>
 
   <main>
     <section class="hero section-dark" id="top">
@@ -42,7 +76,8 @@
           </div>
           <h1>
             在 AI 时代，
-            真正稀缺的是有人带孩子
+            真正稀缺的是
+            有人带孩子
             <em>读透一本好书。</em>
           </h1>
           <p class="hero-lead">
@@ -58,42 +93,6 @@
           <p class="hero-note">
             筛选制入营：先做测评，再确认 Level 与 cohort 匹配度。课程面向全球优秀学生，按学力与节奏完成高标准匹配。
           </p>
-
-          <div class="hero-stat-row">
-            <article class="hero-stat hero-stat-featured">
-              <span class="hero-stat-kicker">阅读强度</span>
-              <span class="hero-stat-num">30-40 万+</span>
-              <span class="hero-stat-label">深度阅读量</span>
-              <span class="hero-stat-note">真正拉开阅读理解与文本分析差距的底层训练量。</span>
-            </article>
-            <article class="hero-stat hero-stat-featured hero-stat-accent">
-              <span class="hero-stat-kicker">平台底座</span>
-              <span class="hero-stat-num">2 万+</span>
-              <span class="hero-stat-label">文章 / 音频 / 视频资源</span>
-              <span class="hero-stat-note">BigAcademy 平台内容库持续托举孩子的阅读广度与训练密度。</span>
-            </article>
-            <article class="hero-stat">
-              <span class="hero-stat-kicker">小班直播课</span>
-              <span class="hero-stat-num">18</span>
-              <span class="hero-stat-label">节高级外教直播课</span>
-            </article>
-            <article class="hero-stat">
-              <span class="hero-stat-kicker">写作输出</span>
-              <span class="hero-stat-num">3000+</span>
-              <span class="hero-stat-label">命题写作累计字数</span>
-            </article>
-            <article class="hero-stat">
-              <span class="hero-stat-kicker">同伴讨论</span>
-              <span class="hero-stat-num">20+</span>
-              <span class="hero-stat-label">个深度话题的全球优秀同伴集体讨论</span>
-              <span class="hero-stat-note">学习平台持续承接讨论、回应与观点碰撞。</span>
-            </article>
-            <article class="hero-stat">
-              <span class="hero-stat-kicker">随时答疑</span>
-              <span class="hero-stat-num">24h</span>
-              <span class="hero-stat-label">AI Tutor 随时答疑</span>
-            </article>
-          </div>
         </div>
 
         <div class="hero-stage" data-reveal>
@@ -129,6 +128,42 @@
             <img src="./assets/books/term3/anne-of-green-gables.jpg" alt="Anne of Green Gables 封面">
           </article>
         </div>
+      </div>
+
+      <div class="hero-stat-row">
+        <article class="hero-stat hero-stat-featured">
+          <span class="hero-stat-kicker">阅读强度</span>
+          <span class="hero-stat-num">30-40 万+</span>
+          <span class="hero-stat-label">深度阅读量</span>
+          <span class="hero-stat-note">真正拉开阅读理解与文本分析差距的底层训练量。</span>
+        </article>
+        <article class="hero-stat hero-stat-featured hero-stat-accent">
+          <span class="hero-stat-kicker">平台底座</span>
+          <span class="hero-stat-num">2 万+</span>
+          <span class="hero-stat-label">文章 / 音频 / 视频资源</span>
+          <span class="hero-stat-note">BigAcademy 平台内容库持续托举孩子的阅读广度与训练密度。</span>
+        </article>
+        <article class="hero-stat">
+          <span class="hero-stat-kicker">小班直播课</span>
+          <span class="hero-stat-num">18</span>
+          <span class="hero-stat-label">节高级外教直播课</span>
+        </article>
+        <article class="hero-stat">
+          <span class="hero-stat-kicker">写作输出</span>
+          <span class="hero-stat-num">3000+</span>
+          <span class="hero-stat-label">命题写作累计字数</span>
+        </article>
+        <article class="hero-stat">
+          <span class="hero-stat-kicker">同伴讨论</span>
+          <span class="hero-stat-num">20+</span>
+          <span class="hero-stat-label">个深度话题的全球优秀同伴集体讨论</span>
+          <span class="hero-stat-note">学习平台持续承接讨论、回应与观点碰撞。</span>
+        </article>
+        <article class="hero-stat">
+          <span class="hero-stat-kicker">随时答疑</span>
+          <span class="hero-stat-num">24h</span>
+          <span class="hero-stat-label">AI Tutor 随时答疑</span>
+        </article>
       </div>
 
       <div class="marquee">
@@ -936,23 +971,31 @@
             <img src="./assets/apply/assistant-qr.png" alt="助教二维码">
           </div>
           <div class="apply-card-bottom">
-            <strong>第三期核心交付</strong>
+            <strong>先咨询这三件事</strong>
             <ul>
-              <li>20 周完整读写升级路径</li>
-              <li>18 次高级外教直播课</li>
-              <li>6 本超级精读 + 6 篇写作</li>
-              <li>6 次 Book Ambassador 视频表达</li>
+              <li>孩子现在更适合 Level 1 还是 Level 2。</li>
+              <li>目前阅读基础是否已经足够进入第三期节奏。</li>
+              <li>怎样安排暑假读写训练，效率会更高。</li>
             </ul>
+            <div class="apply-card-actions">
+              <a class="button button-primary apply-card-button" href="#apply">立即预约测评</a>
+              <a class="button button-secondary apply-card-button button-secondary-dark" href="#books">先看第三期书单</a>
+            </div>
           </div>
         </aside>
       </div>
     </section>
   </main>
 
+  <div class="mobile-apply-bar">
+    <a class="mobile-apply-link mobile-apply-link-secondary" href="#books">书单</a>
+    <a class="mobile-apply-link" href="#apply">预约测评</a>
+  </div>
+
   <footer class="site-footer">
     <div>
       <strong>BigAcademy 学术精读写作营 · 2026 第三期</strong>
-      <span>让孩子读得更深，写得更好，想得更远。</span>
+      <span>帮孩子读得更深，写得更好，思考更成熟。</span>
     </div>
     <a href="#top">回到顶部 ↑</a>
   </footer>
