@@ -80,6 +80,7 @@ const sectionFaculty = document.querySelector(".section-faculty");
 const sectionAmbassador = document.querySelector(".section-ambassador");
 const sectionWriting = document.querySelector(".section-writing-proof");
 const sectionOutcomes = document.querySelector("#outcomes");
+const sectionTestimonials = document.querySelector("#testimonials");
 const sectionApply = document.querySelector("#apply");
 
 const facultyCards = all(".faculty-card");
@@ -87,6 +88,7 @@ const programCards = all("#structure .program-card");
 const levelPanels = all(".level-panel");
 const writingSampleCards = all(".writing-sample-card");
 const outcomeCards = all(".outcome-card");
+const testimonialVideoCards = all(".testimonial-video-card");
 
 const ui = {
   brand: document.querySelector(".brand"),
@@ -216,6 +218,15 @@ const ui = {
     visualText: sectionOutcomes?.querySelector(".outcome-visual-note span"),
     cardTitles: outcomeCards.map((card) => card.querySelector("h3")),
     cardTexts: outcomeCards.map((card) => card.querySelector("p")),
+  },
+  testimonials: {
+    eyebrow: sectionTestimonials?.querySelector(".section-heading .eyebrow"),
+    title: sectionTestimonials?.querySelector(".section-heading h2"),
+    lead: sectionTestimonials?.querySelector(".section-heading p"),
+    labels: testimonialVideoCards.map((card) => card.querySelector(".testimonial-video-copy span")),
+    titles: testimonialVideoCards.map((card) => card.querySelector(".testimonial-video-copy h3")),
+    texts: testimonialVideoCards.map((card) => card.querySelector(".testimonial-video-copy p")),
+    videos: testimonialVideoCards.map((card) => card.querySelector("video")),
   },
   apply: {
     eyebrow: sectionApply?.querySelector(".apply-copy .eyebrow"),
@@ -490,6 +501,19 @@ const translations = {
         "借助平台 2 万+ 文章 / 音频 / 视频与 24 小时 AI Tutor，孩子能沿着学习路径自我管理、自主扩展、持续训练。这是 AI 时代最重要的分水岭能力之一。",
         "六次 Book Ambassador 视频录制，是六次突破镜头、突破表达、突破自我设限的训练机会。优秀作品会被老师挑选在直播课中展示。",
       ],
+    },
+    testimonials: {
+      eyebrow: "视频证言",
+      title: "最有说服力的，是亲历者说出来的真实判断。<br><em>老师、学长和学员成果一起构成证言。</em>",
+      lead: "三段视频分别来自美国老师、BigAcademy 学长推荐与真实学员成果展示。它们共同说明：这不是普通阅读营，而是一套能被外部专家、优秀同伴与最终作品共同验证的成长系统。",
+      labels: ["Teacher Testimonial", "Student Recommendation", "Student Outcomes"],
+      titles: ["美国老师认为 BigAcademy 超越 CTY", "学长超级推荐 BigAcademy", "学员成果展示"],
+      texts: [
+        "从专业老师视角，看 BigAcademy 在阅读与写作训练上的深度、标准与课程设计。",
+        "来自学长的真实体验，展示高标准同伴如何成为孩子继续向上的动力。",
+        "把学习成果直接呈现出来，让阅读、写作与表达的提升被看见。",
+      ],
+      videoLabels: ["美国老师认为 BigAcademy 超越 CTY", "学长超级推荐 BigAcademy", "学员成果展示"],
     },
     apply: {
       eyebrow: "咨询报名",
@@ -773,6 +797,19 @@ const translations = {
         "Six Book Ambassador recordings mean six chances to break through camera fear, expression limits, and self-imposed ceilings. Strong work will be selected for live-class showcase.",
       ],
     },
+    testimonials: {
+      eyebrow: "Video Testimonials",
+      title: "The most persuasive proof is what people say after seeing it firsthand.<br><em>Teacher judgment, alumni recommendation, and student outcomes speak together.</em>",
+      lead: "These three videos come from a U.S. teacher, a BigAcademy alumnus recommendation, and a real student-outcome showcase. Together, they show that this is not an ordinary reading camp, but a growth system validated by outside experts, strong peers, and final work.",
+      labels: ["Teacher Testimonial", "Student Recommendation", "Student Outcomes"],
+      titles: ["A U.S. teacher says BigAcademy surpasses CTY", "An alumnus strongly recommends BigAcademy", "Student outcomes showcase"],
+      texts: [
+        "A professional teacher's view of BigAcademy's depth, standards, and reading-writing course design.",
+        "A real student experience showing how high-standard peers become fuel for continued growth.",
+        "Learning outcomes shown directly, making growth in reading, writing, and expression visible.",
+      ],
+      videoLabels: ["U.S. teacher says BigAcademy surpasses CTY", "Alumnus strongly recommends BigAcademy", "Student outcomes showcase"],
+    },
     apply: {
       eyebrow: "Apply",
       title: "If you want your child to build truly elite reading and writing ability,<br><em>let's talk about Term 3 now.</em>",
@@ -948,6 +985,16 @@ const applyLanguage = (lang) => {
   setText(ui.outcomes.visualText, t.outcomes.visualText);
   setTexts(ui.outcomes.cardTitles, t.outcomes.titles);
   setTexts(ui.outcomes.cardTexts, t.outcomes.texts);
+
+  setText(ui.testimonials.eyebrow, t.testimonials.eyebrow);
+  setHTML(ui.testimonials.title, t.testimonials.title);
+  setText(ui.testimonials.lead, t.testimonials.lead);
+  setTexts(ui.testimonials.labels, t.testimonials.labels);
+  setTexts(ui.testimonials.titles, t.testimonials.titles);
+  setTexts(ui.testimonials.texts, t.testimonials.texts);
+  ui.testimonials.videos.forEach((video, index) => {
+    setAttributes(video, { "aria-label": t.testimonials.videoLabels[index] });
+  });
 
   setText(ui.apply.eyebrow, t.apply.eyebrow);
   setHTML(ui.apply.title, t.apply.title);
