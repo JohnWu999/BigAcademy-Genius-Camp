@@ -1230,6 +1230,95 @@ body.mobile-nav-open .mobile-nav-card {
   box-shadow: var(--shadow-lg);
 }
 
+.class-calendar-showcase {
+  margin-top: 24px;
+  padding: 28px;
+  border-radius: 30px;
+  background:
+    linear-gradient(180deg, rgba(82, 103, 255, 0.08), rgba(44, 122, 114, 0.1)),
+    rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.class-calendar-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(260px, 0.55fr);
+  gap: 24px;
+  align-items: end;
+}
+
+.class-calendar-heading h3 {
+  margin: 0;
+  font-family: "Noto Serif SC", "Cormorant Garamond", serif;
+  font-size: clamp(1.55rem, 2vw, 2.2rem);
+  line-height: 1.32;
+  color: #fff7ea;
+}
+
+.class-calendar-heading p {
+  margin: 0;
+  color: rgba(245, 239, 230, 0.72);
+}
+
+.class-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.class-calendar-card {
+  overflow: hidden;
+  display: grid;
+  border-radius: 24px;
+  background: rgba(14, 14, 15, 0.56);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.class-calendar-card a {
+  display: block;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.class-calendar-card img {
+  aspect-ratio: 1.33 / 1;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.28s ease;
+}
+
+.class-calendar-card a:hover img {
+  transform: scale(1.025);
+}
+
+.class-calendar-copy {
+  display: grid;
+  gap: 6px;
+  padding: 20px;
+}
+
+.class-calendar-copy span {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(240, 195, 127, 0.9);
+}
+
+.class-calendar-copy strong {
+  font-family: "Noto Serif SC", "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  color: #fff7ea;
+}
+
+.class-calendar-copy p {
+  margin: 0;
+  color: rgba(245, 239, 230, 0.68);
+}
+
 .admissions-callout h3 {
   margin: 0;
   font-family: "Noto Serif SC", "Cormorant Garamond", serif;
@@ -2336,6 +2425,8 @@ body.mobile-nav-open .mobile-nav-card {
   .faculty-grid,
   .quote-grid,
   .timeline-metrics,
+  .class-calendar-heading,
+  .class-calendar-grid,
   .selection-logic,
   .apply-profile-grid,
   .outcome-grid {

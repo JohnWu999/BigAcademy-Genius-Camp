@@ -152,6 +152,14 @@ const ui = {
     metricNumbers: all(".timeline-metrics strong", sectionTimeline),
     metricLabels: all(".timeline-metrics span", sectionTimeline),
     summary: sectionTimeline?.querySelector(".timeline-summary"),
+    calendarEyebrow: sectionTimeline?.querySelector(".class-calendar-heading .eyebrow"),
+    calendarTitle: sectionTimeline?.querySelector(".class-calendar-heading h3"),
+    calendarLead: sectionTimeline?.querySelector(".class-calendar-heading p"),
+    calendarLinks: all(".class-calendar-card a", sectionTimeline),
+    calendarImages: all(".class-calendar-card img", sectionTimeline),
+    calendarTags: all(".class-calendar-copy span", sectionTimeline),
+    calendarTitles: all(".class-calendar-copy strong", sectionTimeline),
+    calendarTexts: all(".class-calendar-copy p", sectionTimeline),
     calloutEyebrow: sectionTimeline?.querySelector(".admissions-callout .eyebrow"),
     calloutTitle: sectionTimeline?.querySelector(".admissions-callout h3"),
     selectionTitles: all(".selection-logic strong", sectionTimeline),
@@ -368,13 +376,24 @@ const translations = {
     timeline: {
       eyebrow: "课程节奏",
       title: "20 周成长路径清晰推进，<br><em>每一步都有明确目标。</em>",
-      lead: "2026 年 7 月 13 日开营，12 月 18 日收官。期间有国庆与感恩节各一周假期，但整个项目推进节奏保持完整。",
+      lead: "2026 年 7 月 6 日开营，12 月 13 日收官。期间有国庆与感恩节各一周缓冲，但整个项目推进节奏保持完整。",
       headerStrong: "2026 第三期课程强度",
-      headerSpan: "2026.07.13 - 2026.12.18 · 20 周",
+      headerSpan: "2026.07.06 - 2026.12.13 · 20 周",
       note: "含国庆 / 感恩节各 1 周假期",
       metricNumbers: ["18", "30-40 万+", "3000+", "20"],
       metricLabels: ["节高级外教直播课", "深度阅读量", "6 篇命题作文累计字数", "次学习路径同伴讨论"],
       summary: "另外还包含 6 次 Book Ambassador 视频表达、2 次综合测评，以及贯穿全程的 AI Tutor 个性化训练。",
+      calendarEyebrow: "课程日历",
+      calendarTitle: "两张课程日历，把 7 月 6 日到 12 月 13 日的节奏完整展开。",
+      calendarLead: "点击日历可在新窗口查看大图。家长可以直接看到每周直播、阅读书目、项目节点与缓冲周安排。",
+      calendarAria: ["查看 L1 课程日历大图", "查看 L2 课程日历大图"],
+      calendarAlt: ["L1 课程日历", "L2 课程日历"],
+      calendarTags: ["L1", "L2"],
+      calendarTitles: ["Reading Program 课程日历", "Reading Program 课程日历"],
+      calendarTexts: [
+        "Flora & Ulysses、The One and Only Ivan、City of Ember 等六本书的完整推进节奏。",
+        "The Call of the Wild、Ender's Game、Refugee、The Hobbit 等六本书的完整推进节奏。",
+      ],
       calloutEyebrow: "筛选制入营",
       calloutTitle: "高标准共学环境，<br><em>只向通过测评与匹配的学生开放。</em>",
       selectionTitles: ["先测评，再决定是否入营", "按学力与节奏做匹配", "面向全球精英学生群体"],
@@ -533,7 +552,7 @@ const translations = {
         "评估孩子更适合 L1 还是 L2，以及是否适合第三期节奏。",
         "一对一咨询，了解第三期是否是你们家庭真正需要的一次升级。",
       ],
-      badges: ["2026.07.13 开营", "筛选制入营", "蓝思 / MAP 风格测评"],
+      badges: ["2026.07.06 开营", "筛选制入营", "蓝思 / MAP 风格测评"],
       cardMini: "BigAcademy Inquiry",
       cardTitle: "扫码预约咨询与测评",
       cardText: "领取第三期课程说明、测评建议与报名咨询。",
@@ -663,13 +682,24 @@ const translations = {
     timeline: {
       eyebrow: "Pacing",
       title: "The full 20-week path is clear and deliberate,<br><em>with every step tied to a goal.</em>",
-      lead: "The program opens on July 13, 2026 and concludes on December 18. There is one week off for National Day and one week for Thanksgiving, while the overall rhythm remains intact.",
+      lead: "The program opens on July 6, 2026 and concludes on December 13. There is one buffer week for National Day and one for Thanksgiving, while the overall rhythm remains intact.",
       headerStrong: "2026 Term 3 Program Intensity",
-      headerSpan: "July 13 - December 18 · 20 weeks",
-      note: "Includes one week off for National Day and one for Thanksgiving",
+      headerSpan: "July 6 - December 13 · 20 weeks",
+      note: "Includes one buffer week for National Day and one for Thanksgiving",
       metricNumbers: ["18", "300k-400k+", "3000+", "20"],
       metricLabels: ["advanced live classes", "words of deep reading", "cumulative output across 6 guided essays", "peer discussion sessions on the learning path"],
       summary: "The term also includes 6 Book Ambassador video presentations, 2 comprehensive assessments, and continuous AI Tutor training throughout the full program.",
+      calendarEyebrow: "Class Calendars",
+      calendarTitle: "Two class calendars lay out the full rhythm from July 6 to December 13.",
+      calendarLead: "Click either calendar to open the full-size image in a new tab. Families can see weekly live classes, books, project checkpoints, and buffer weeks at a glance.",
+      calendarAria: ["Open the full L1 class calendar", "Open the full L2 class calendar"],
+      calendarAlt: ["L1 class calendar", "L2 class calendar"],
+      calendarTags: ["L1", "L2"],
+      calendarTitles: ["Reading Program Calendar", "Reading Program Calendar"],
+      calendarTexts: [
+        "The full pacing for Flora & Ulysses, The One and Only Ivan, City of Ember, and the rest of the L1 book path.",
+        "The full pacing for The Call of the Wild, Ender's Game, Refugee, The Hobbit, and the rest of the L2 book path.",
+      ],
       calloutEyebrow: "Selective Cohort",
       calloutTitle: "A high-standard learning environment,<br><em>open only to students who pass assessment and fit the cohort.</em>",
       selectionTitles: ["Assessment first, admission second", "Matched by ability and pace", "Built for a global elite cohort"],
@@ -828,7 +858,7 @@ const translations = {
         "We evaluate whether the student is a better fit for L1 or L2 and whether the rhythm of Term 3 is the right match.",
         "Get a one-to-one consultation and find out whether Term 3 is the real next upgrade your family needs.",
       ],
-      badges: ["Starts 2026.07.13", "Selective admission", "Lexile / MAP-style assessment"],
+      badges: ["Starts 2026.07.06", "Selective admission", "Lexile / MAP-style assessment"],
       cardMini: "BigAcademy Inquiry",
       cardTitle: "Scan to book a consultation and assessment",
       cardText: "Receive the Term 3 overview, assessment advice, and admissions guidance.",
@@ -918,6 +948,18 @@ const applyLanguage = (lang) => {
   setTexts(ui.timeline.metricNumbers, t.timeline.metricNumbers);
   setTexts(ui.timeline.metricLabels, t.timeline.metricLabels);
   setText(ui.timeline.summary, t.timeline.summary);
+  setText(ui.timeline.calendarEyebrow, t.timeline.calendarEyebrow);
+  setText(ui.timeline.calendarTitle, t.timeline.calendarTitle);
+  setText(ui.timeline.calendarLead, t.timeline.calendarLead);
+  setTexts(ui.timeline.calendarTags, t.timeline.calendarTags);
+  setTexts(ui.timeline.calendarTitles, t.timeline.calendarTitles);
+  setTexts(ui.timeline.calendarTexts, t.timeline.calendarTexts);
+  ui.timeline.calendarLinks.forEach((link, index) => {
+    setAttributes(link, { "aria-label": t.timeline.calendarAria[index] });
+  });
+  ui.timeline.calendarImages.forEach((image, index) => {
+    setAttributes(image, { alt: t.timeline.calendarAlt[index] });
+  });
   setText(ui.timeline.calloutEyebrow, t.timeline.calloutEyebrow);
   setHTML(ui.timeline.calloutTitle, t.timeline.calloutTitle);
   setTexts(ui.timeline.selectionTitles, t.timeline.selectionTitles);
