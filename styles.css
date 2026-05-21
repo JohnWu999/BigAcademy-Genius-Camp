@@ -1283,9 +1283,8 @@ body.mobile-nav-open .mobile-nav-card {
 }
 
 .class-calendar-card img {
-  aspect-ratio: 1.33 / 1;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  object-fit: contain;
   transition: transform 0.28s ease;
 }
 
