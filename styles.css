@@ -1279,12 +1279,15 @@ body.mobile-nav-open .mobile-nav-card {
 .class-calendar-card a {
   display: block;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.28);
+  aspect-ratio: 0.72 / 1;
+  background: #fff;
 }
 
 .class-calendar-card img {
-  height: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
   transition: transform 0.28s ease;
 }
 
