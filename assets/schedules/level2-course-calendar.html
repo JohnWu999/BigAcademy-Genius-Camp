@@ -423,7 +423,7 @@
     <section class="top-grid">
       <div>
         <div class="months-grid" id="months"></div>
-        <div class="calendar-layout-note">All live classes meet on Saturdays, 12:30 PM-1:30 PM China Standard Time.</div>
+        <div class="calendar-layout-note">Summer live classes meet Saturdays 9:00-10:00 AM; school-term live classes meet Saturdays 12:30 PM-1:30 PM China Standard Time.</div>
       </div>
 
       <aside class="schedule-panel">
@@ -447,7 +447,7 @@
         <span class="legend-dot blue"></span>
         <div>
           <strong>Summer Live Class</strong>
-          <span>Saturdays<br>12:30 PM-1:30 PM</span>
+          <span>Saturdays<br>9:00 AM-10:00 AM</span>
         </div>
       </div>
       <div class="legend-item green">
@@ -478,7 +478,7 @@
         <strong>Summer Live Classes</strong>
         <div class="stat-number">6</div>
         <div class="rule"></div>
-        <span>Saturdays<br>12:30 PM-1:30 PM</span>
+        <span>Saturdays<br>9:00 AM-10:00 AM</span>
       </article>
       <article class="stat-card green">
         <strong>School Term Live Classes</strong>
@@ -603,10 +603,14 @@
         <td class="week"><span class="week-pill ${color}">${item.week}</span></td>
         <td>${item.range}</td>
         <td>${item.focus}</td>
-        <td class="time">Sat ${item.date}<br>12:30-1:30 PM</td>
+        <td class="time">Sat ${item.date}<br>${classTime(item)}</td>
       `;
       scheduleNode.append(row);
     });
+
+    function classTime(item) {
+      return item.phase === "summer" ? "9:00-10:00 AM" : "12:30-1:30 PM";
+    }
   </script>
 </body>
 </html>
