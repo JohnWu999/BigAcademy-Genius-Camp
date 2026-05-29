@@ -157,6 +157,7 @@ const ui = {
     calendarLead: sectionTimeline?.querySelector(".class-calendar-heading p"),
     calendarLinks: all(".class-calendar-card a", sectionTimeline),
     calendarImages: all(".class-calendar-card img", sectionTimeline),
+    calendarOpen: all(".class-calendar-open", sectionTimeline),
     calendarTags: all(".class-calendar-copy span", sectionTimeline),
     calendarTitles: all(".class-calendar-copy strong", sectionTimeline),
     calendarTexts: all(".class-calendar-copy p", sectionTimeline),
@@ -386,13 +387,14 @@ const translations = {
       calendarEyebrow: "课程日历",
       calendarTitle: "两张课程日历，把 7 月 6 日到 12 月 13 日的节奏完整展开。",
       calendarLead: "点击日历可在新窗口查看大图。家长可以直接看到每周直播、阅读书目、项目节点与缓冲周安排。",
-      calendarAria: ["查看 L1 课程日历大图", "查看 L2 课程日历大图"],
+      calendarAria: ["查看 L1 课程日历大图", "打开 L2 网页版课程日历"],
       calendarAlt: ["L1 课程日历", "L2 课程日历"],
+      calendarOpen: ["打开网页版日历"],
       calendarTags: ["L1", "L2"],
-      calendarTitles: ["Reading Program 课程日历", "Reading Program 课程日历"],
+      calendarTitles: ["Reading Program 课程日历", "Reading Program 网页版课程日历"],
       calendarTexts: [
         "Flora & Ulysses、The One and Only Ivan、City of Ember 等六本书的完整推进节奏。",
-        "The Call of the Wild、Ender's Game、Refugee、The Hobbit 等六本书的完整推进节奏。",
+        "所有暑期与开学后 live class 统一调整到周六 12:30 PM-1:30 PM，周次与书目节奏保持一一对应。",
       ],
       calloutEyebrow: "筛选制入营",
       calloutTitle: "高标准共学环境，<br><em>只向通过测评与匹配的学生开放。</em>",
@@ -692,13 +694,14 @@ const translations = {
       calendarEyebrow: "Class Calendars",
       calendarTitle: "Two class calendars lay out the full rhythm from July 6 to December 13.",
       calendarLead: "Click either calendar to open the full-size image in a new tab. Families can see weekly live classes, books, project checkpoints, and buffer weeks at a glance.",
-      calendarAria: ["Open the full L1 class calendar", "Open the full L2 class calendar"],
+      calendarAria: ["Open the full L1 class calendar", "Open the L2 web calendar"],
       calendarAlt: ["L1 class calendar", "L2 class calendar"],
+      calendarOpen: ["Open web calendar"],
       calendarTags: ["L1", "L2"],
-      calendarTitles: ["Reading Program Calendar", "Reading Program Calendar"],
+      calendarTitles: ["Reading Program Calendar", "Editable Web Calendar"],
       calendarTexts: [
         "The full pacing for Flora & Ulysses, The One and Only Ivan, City of Ember, and the rest of the L1 book path.",
-        "The full pacing for The Call of the Wild, Ender's Game, Refugee, The Hobbit, and the rest of the L2 book path.",
+        "All summer and school-term live classes now meet on Saturdays from 12:30 PM to 1:30 PM, with the week-by-week book sequence preserved.",
       ],
       calloutEyebrow: "Selective Cohort",
       calloutTitle: "A high-standard learning environment,<br><em>open only to students who pass assessment and fit the cohort.</em>",
@@ -952,6 +955,7 @@ const applyLanguage = (lang) => {
   setText(ui.timeline.calendarTitle, t.timeline.calendarTitle);
   setText(ui.timeline.calendarLead, t.timeline.calendarLead);
   setTexts(ui.timeline.calendarTags, t.timeline.calendarTags);
+  setTexts(ui.timeline.calendarOpen, t.timeline.calendarOpen);
   setTexts(ui.timeline.calendarTitles, t.timeline.calendarTitles);
   setTexts(ui.timeline.calendarTexts, t.timeline.calendarTexts);
   ui.timeline.calendarLinks.forEach((link, index) => {
