@@ -160,27 +160,6 @@
       background: #f7e6cd;
     }
 
-    .day.today {
-      outline: 3px solid #e11d48;
-      outline-offset: -4px;
-      background: #fff5f7;
-      z-index: 1;
-    }
-
-    .day.today::after {
-      content: "TODAY";
-      position: absolute;
-      right: 4px;
-      bottom: 3px;
-      padding: 2px 5px;
-      border-radius: 999px;
-      background: #e11d48;
-      color: #fff;
-      font-size: 0.55rem;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-    }
-
     .date-dot {
       display: inline-grid;
       place-items: center;
@@ -285,63 +264,6 @@
       color: #18305f;
       font-weight: 700;
       text-align: center;
-    }
-
-    .today-panel {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 14px;
-      align-items: center;
-      margin: 20px 0 0;
-      padding: 14px 18px;
-      border: 2px solid #e11d48;
-      border-radius: 14px;
-      background: #fff5f7;
-      text-align: left;
-      box-shadow: 0 14px 32px rgba(225, 29, 72, 0.12);
-    }
-
-    .today-badge {
-      display: grid;
-      place-items: center;
-      min-width: 72px;
-      height: 42px;
-      padding: 0 14px;
-      border-radius: 999px;
-      background: #e11d48;
-      color: #fff;
-      font-weight: 900;
-      letter-spacing: 0.06em;
-    }
-
-    .today-copy strong,
-    .today-copy span {
-      display: block;
-    }
-
-    .today-copy strong {
-      color: #981337;
-      font-size: 1.05rem;
-    }
-
-    .today-copy span {
-      margin-top: 4px;
-      color: #394762;
-      font-size: 0.95rem;
-      line-height: 1.35;
-    }
-
-    .today-next {
-      color: #981337;
-      font-size: 0.88rem;
-      font-weight: 900;
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    .schedule-table tr.current-week td {
-      background: #fff5f7;
-      box-shadow: inset 4px 0 0 #e11d48;
     }
 
     .legend {
@@ -466,15 +388,6 @@
       .schedule-panel {
         order: -1;
       }
-
-      .today-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .today-next {
-        text-align: left;
-        white-space: normal;
-      }
     }
 
     @media print {
@@ -511,7 +424,6 @@
       <div>
         <div class="months-grid" id="months"></div>
         <div class="calendar-layout-note">All live classes meet on Saturdays, 12:30 PM-1:30 PM China Standard Time.</div>
-        <div class="today-panel" id="todayPanel" aria-live="polite"></div>
       </div>
 
       <aside class="schedule-panel">
@@ -632,20 +544,9 @@
 
     const liveByDate = new Map(liveClasses.map((item) => [`${item.month}-${item.day}`, item]));
     const isBuffer = (month, day) => buffers.some((buffer) => buffer.month === month && day >= buffer.start && day <= buffer.end);
-    const msPerDay = 24 * 60 * 60 * 1000;
-    const courseStart = dayStamp(2026, 6, 6);
-    const courseEnd = dayStamp(2026, 11, 13);
-    const today = getChinaToday();
-    const currentBuffer = buffers.find((buffer) => today.month === buffer.month && today.day >= buffer.start && today.day <= buffer.end);
-    const currentWeek = liveClasses.find((item) => {
-      const classDay = dayStamp(2026, item.month, item.day);
-      return today.stamp >= classDay - (5 * msPerDay) && today.stamp <= classDay + msPerDay;
-    });
-    const nextClass = liveClasses.find((item) => dayStamp(2026, item.month, item.day) >= today.stamp);
 
     const monthsNode = document.querySelector("#months");
     const scheduleNode = document.querySelector("#schedule");
-    const todayPanel = document.querySelector("#todayPanel");
 
     months.forEach((month) => {
       const card = document.createElement("article");
@@ -664,12 +565,7 @@
       for (let day = 1; day <= month.days; day += 1) {
         const cell = document.createElement("span");
         cell.className = "day";
-        cell.dataset.date = `2026-${String(month.month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
         if (isBuffer(month.month, day)) cell.classList.add("buffer");
-        if (today.year === 2026 && today.month === month.month && today.day === day) {
-          cell.classList.add("today");
-          cell.setAttribute("aria-label", `Today, ${cell.dataset.date}`);
-        }
 
         const live = liveByDate.get(`${month.month}-${day}`);
         if (month.month === 11 && day === 13) {
@@ -702,7 +598,6 @@
       }
 
       const row = document.createElement("tr");
-      if (currentWeek?.week === item.week) row.className = "current-week";
       const color = item.phase === "summer" ? "blue" : "green";
       row.innerHTML = `
         <td class="week"><span class="week-pill ${color}">${item.week}</span></td>
@@ -712,82 +607,6 @@
       `;
       scheduleNode.append(row);
     });
-
-    renderTodayPanel();
-
-    function renderTodayPanel() {
-      let title = "";
-      let detail = "";
-      let next = "";
-
-      if (today.stamp < courseStart) {
-        title = `Today in China: ${formatDate(today)} · Program has not started yet`;
-        detail = `The Level 2 program starts on July 6, 2026. The first live class is Saturday, July 11, 12:30-1:30 PM.`;
-        next = `${daysBetween(today.stamp, courseStart)} days to start`;
-      } else if (today.stamp > courseEnd) {
-        title = `Today in China: ${formatDate(today)} · Program completed`;
-        detail = `The Level 2 program ended on December 13, 2026.`;
-        next = "Completed";
-      } else if (currentBuffer) {
-        title = `Today in China: ${formatDate(today)} · Catch-up buffer`;
-        detail = `This is a no-live-class buffer period. Families can use this window to catch up and prepare for the next reading cycle.`;
-        next = nextClass ? `Next live class: Sat ${nextClass.date}` : "No upcoming class";
-      } else if (currentWeek) {
-        title = `Today in China: ${formatDate(today)} · Week ${currentWeek.week}`;
-        detail = `${currentWeek.focus}. Live class: Saturday ${currentWeek.date}, 12:30-1:30 PM China Standard Time.`;
-        next = `Current week`;
-      } else {
-        title = `Today in China: ${formatDate(today)} · Between course weeks`;
-        detail = nextClass ? `The next live class is Saturday ${nextClass.date}, 12:30-1:30 PM China Standard Time.` : `Please check the program-end marker below.`;
-        next = nextClass ? `Next: Week ${nextClass.week}` : "Program end";
-      }
-
-      todayPanel.innerHTML = `
-        <div class="today-badge">TODAY</div>
-        <div class="today-copy">
-          <strong>${title}</strong>
-          <span>${detail}</span>
-        </div>
-        <div class="today-next">${next}</div>
-      `;
-    }
-
-    function getChinaToday() {
-      const previewDate = new URLSearchParams(window.location.search).get("today");
-      if (/^\d{4}-\d{2}-\d{2}$/.test(previewDate || "")) {
-        const [year, month, day] = previewDate.split("-").map(Number);
-        return { year, month: month - 1, day, stamp: dayStamp(year, month - 1, day) };
-      }
-
-      const parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: "Asia/Shanghai",
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-      }).formatToParts(new Date());
-      const value = (type) => Number(parts.find((part) => part.type === type).value);
-      const year = value("year");
-      const month = value("month") - 1;
-      const day = value("day");
-      return { year, month, day, stamp: dayStamp(year, month, day) };
-    }
-
-    function dayStamp(year, month, day) {
-      return Date.UTC(year, month, day);
-    }
-
-    function daysBetween(from, to) {
-      return Math.max(0, Math.round((to - from) / msPerDay));
-    }
-
-    function formatDate(date) {
-      return new Intl.DateTimeFormat("en-US", {
-        timeZone: "Asia/Shanghai",
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      }).format(new Date(Date.UTC(date.year, date.month, date.day, 12)));
-    }
   </script>
 </body>
 </html>
